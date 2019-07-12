@@ -25,10 +25,5 @@ film2.save()
 film3 = Film.new({'title' => 'Miller\'s Crossing', 'price' => 25})
 film3.save()
 
-customer1.name = 'Susie'
-
-customer1.update()
-# customer1.save()
-
 binding.pry
 nil
