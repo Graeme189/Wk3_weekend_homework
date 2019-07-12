@@ -2,8 +2,6 @@ require_relative("../db/sql_runner")
 require_relative("customer")
 require_relative("ticket")
 
-
-
 class Film
 
   attr_accessor :title, :price
@@ -49,6 +47,6 @@ class Film
               WHERE id = $3;"
          values = [@title, @price, @id]
          SqlRunner.run(sql, values)
-      end
+    end
 
 end
