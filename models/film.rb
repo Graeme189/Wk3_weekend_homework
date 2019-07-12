@@ -49,4 +49,36 @@ class Film
          SqlRunner.run(sql, values)
     end
 
+    # def customer()
+    #   sql = "SELECT *
+    #   FROM customers
+    #   WHERE film_id = $1"
+    #   values = [@customer_id]
+    #   customer = SqlRunner.run(sql, values).first
+    #   return Customer.new(customer)
+    # end
+
+    def customer()
+      sql = "SELECT customers.*
+      FROM customers
+      INNER JOIN tickets
+      ON tickets.customer_id = customers.id
+      WHERE film_id = $1;"
+      values = [@id]
+      customers = SqlRunner.run(sql, values)
+      result = customers.map { |customer| Customer.new( customer ) }
+      return result
+    end
+
+  
+
+
+  # def location()
+  #   sql = "SELECT * FROM locations
+  #   WHERE id = $1"
+  #   values = [@location_id]
+  #   location = SqlRunner.run(sql, values).first
+  #   return Location.new(location)
+  # end
+
 end
