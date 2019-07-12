@@ -20,4 +20,19 @@ class Customer
     @id = customer['id'].to_i
   end
 
+  def self.all()
+      sql = "SELECT * FROM customers"
+      values = []
+      customers = SqlRunner.run(sql, values)
+      result = customers.map { |customer| Customer.new(customer) }
+      return result
+    end
+
+    # def self.delete_all()
+    #   sql = "DELETE FROM users"
+    #   values = []
+    #   SqlRunner.run(sql, values)
+    # end
+    #
+
 end
