@@ -17,13 +17,18 @@ customer3 = Customer.new({'name' => 'Joe', 'funds' => 150})
 customer3.save()
 
 film1 = Film.new({'title' => 'The Thing', 'price' => 20})
-film1.save
+film1.save()
 
 film2 = Film.new({'title' => 'A Fistful of Dollars', 'price' => 15})
-film2.save
+film2.save()
 
 film3 = Film.new({'title' => 'Miller\'s Crossing', 'price' => 25})
-film3.save
+film3.save()
+
+customer1.name = 'Susie'
+
+customer1.update()
+# customer1.save()
 
 binding.pry
 nil
