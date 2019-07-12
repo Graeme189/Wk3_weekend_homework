@@ -1,5 +1,5 @@
 require_relative('models/customer')
-require_relative('models/ticket')
+require_relative('models/film')
 require_relative('models/ticket')
 
 require('pry')
@@ -12,6 +12,15 @@ customer2.save()
 
 customer3 = Customer.new({'name' => 'Joe', 'funds' => 150})
 customer3.save()
+
+film1 = Film.new({'title' => 'The Thing', 'price' => 20})
+film1.save
+
+film2 = Film.new({'title' => 'A Fistful of Dollars', 'price' => 15})
+film2.save
+
+film3 = Film.new({'title' => 'Miller\'s Crossing', 'price' => 25})
+film3.save
 
 binding.pry
 nil
