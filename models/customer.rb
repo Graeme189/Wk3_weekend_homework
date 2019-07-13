@@ -1,6 +1,6 @@
-require_relative("../db/sql_runner")
-require_relative("film")
-require_relative("ticket")
+require_relative('../db/sql_runner')
+require_relative('film')
+require_relative('ticket')
 
 class Customer
 
@@ -16,14 +16,14 @@ class Customer
   def save()
     sql = "INSERT INTO customers (name, funds)
     VALUES ($1, $2)
-    RETURNING id"
+    RETURNING id;"
     values = [@name, @funds]
     customer = SqlRunner.run( sql, values ).first
     @id = customer['id'].to_i
   end
 
   def self.all()
-    sql = "SELECT * FROM customers"
+    sql = "SELECT * FROM customers;"
     values = []
     customers = SqlRunner.run(sql, values)
     result = customers.map { |customer| Customer.new(customer) }
@@ -31,22 +31,22 @@ class Customer
   end
 
   def self.delete_all()
-    sql = "DELETE FROM customers"
+    sql = "DELETE FROM customers;"
     values = []
     SqlRunner.run(sql, values)
   end
 
   def delete()
-  sql = "DELETE FROM customers WHERE id = $1;"
-  values = [@id]
-  SqlRunner.run(sql, values)
+    sql = "DELETE FROM customers WHERE id = $1;"
+    values = [@id]
+    SqlRunner.run(sql, values)
   end
 
   def update()
-      sql = "UPDATE customers SET (name, funds) = ($1, $2)
-            WHERE id = $3;"
-       values = [@name, @funds, @id]
-       SqlRunner.run(sql, values)
+    sql = "UPDATE customers SET (name, funds) = ($1, $2)
+    WHERE id = $3;"
+    values = [@name, @funds, @id]
+    SqlRunner.run(sql, values)
   end
 
   def films()
@@ -56,9 +56,9 @@ class Customer
     ON tickets.film_id = films.id
     WHERE customer_id = $1;"
     values = [@id]
-   	films = SqlRunner.run(sql, values)
-  	result = films.map { |film| Film.new( film ) }
-  	return result
+    films = SqlRunner.run(sql, values)
+    result = films.map { |film| Film.new(film) }
+    return result
   end
 
   def tickets
@@ -68,5 +68,6 @@ class Customer
     tickets = SqlRunner.run(sql, values)
     result = tickets.map { |ticket| Ticket.new(ticket)}
     return result
-    end
+  end
+
 end

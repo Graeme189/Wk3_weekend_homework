@@ -13,26 +13,6 @@ class Ticket
     @film_id = options['film_id'].to_i
   end
 
-  def self.delete_all()
-    sql = "DELETE FROM tickets"
-    values = []
-    SqlRunner.run(sql, values)
-  end
-
-  def customer()
-      sql = "SELECT * FROM customers WHERE id = $1;"
-      values = [@customer_id]
-      customer = SqlRunner.run(sql, values).first
-      return Customer.new(customer)
-    end
-
-    def film()
-      sql = "SELECT * FROM films WHERE id = $1;"
-      values = [@film_id]
-      film = SqlRunner.run(sql, values).first
-      return Film.new(film)
-    end
-
   def save()
     sql = "INSERT INTO tickets (customer_id, film_id)
     VALUES ($1, $2)
@@ -42,43 +22,45 @@ class Ticket
     @id = ticket['id'].to_i
   end
 
-  # def update()
-  #     sql = "UPDATE tickets SET (customer_id, film_id) = ($1, $2)
-  #           WHERE id = $3;"
-  #      values = [@customer_id, @film, @id]
-  #      SqlRunner.run(sql, values)
-  # end
+  def self.all()
+    sql = "SELECT * FROM tickets"
+    values = []
+    tickets = SqlRunner.run(sql, values)
+    result = tickets.map { |ticket| Ticket.new(ticket) }
+    return result
+  end
 
-  def films()
-    sql = "SELECT films.*
-    FROM films
-    INNER JOIN tickets
-    ON tickets.film_id = films.id
-    WHERE customer_id = $1;"
+  def self.delete_all()
+    sql = "DELETE FROM tickets"
+    values = []
+    SqlRunner.run(sql, values)
+  end
+
+  def delete()
+    sql = "DELETE FROM tickets WHERE id = $1;"
     values = [@id]
-   	films = SqlRunner.run(sql, values)
-  	result = films.map { |film| Film.new( film ) }
-  	return result
+    SqlRunner.run(sql, values)
+  end
+
+  def update()
+    sql = "UPDATE tickets SET (customer_id, ticket_id) = ($1, $2)
+    WHERE id = $3;"
+    values = [@customer_id, @film_id]
+    SqlRunner.run(sql, values)
   end
 
   def customer()
-    sql = "SELECT customers.*
-    FROM customers
-    INNER JOIN tickets
-    ON tickets.customer_id = customers.id
-    WHERE film_id = $1;"
-    values = [@id]
-   	customers = SqlRunner.run(sql, values)
-  	result = customers.map { |customer| Customer.new( customer ) }
-  	return result
+    sql = "SELECT * FROM customers WHERE id = $1;"
+    values = [@customer_id]
+    customer = SqlRunner.run(sql, values).first
+    return Customer.new(customer)
   end
 
-  def films()
-  sql = "SELECT * FROM films
-  WHERE id = $1"
-  values = [@film_id]
-  films = SqlRunner.run(sql, values).first
-  return Film.new(films)
+  def film()
+    sql = "SELECT * FROM films WHERE id = $1;"
+    values = [@film_id]
+    film = SqlRunner.run(sql, values).first
+    return Film.new(film)
   end
 
 end
