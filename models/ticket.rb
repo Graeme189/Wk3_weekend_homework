@@ -1,16 +1,18 @@
 require_relative('../db/sql_runner')
 require_relative('film')
 require_relative('customer')
+require_relative('screening')
 
 class Ticket
 
-  attr_accessor :customer_id, :film_id
+  attr_accessor :customer_id, :film_id, :screening_id
   attr_reader :id
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
     @customer_id = options['customer_id'].to_i
     @film_id = options['film_id'].to_i
+    # @screening_id = options['screening_id'].to_i
   end
 
   def save()

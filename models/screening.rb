@@ -36,5 +36,10 @@ def update()
   SqlRunner.run(sql, values)
 end
 
+def self.delete_all()
+  sql = "DELETE FROM screenings"
+  values = []
+  SqlRunner.run(sql, values)
+end
 
 end
