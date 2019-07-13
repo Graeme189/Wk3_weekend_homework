@@ -70,4 +70,13 @@ class Customer
     return result
   end
 
+  def buy_ticket(film)
+    if @funds >= film.price
+      @funds -= film.price
+      ticket = Ticket.new('customer_id' => @id , 'film_id' => film.id)
+      ticket.save
+      update()
+    end
+  end
+
 end
