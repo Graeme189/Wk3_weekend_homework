@@ -1,6 +1,7 @@
 require_relative('models/customer')
 require_relative('models/film')
 require_relative('models/ticket')
+require_relative('models/screening')
 
 require('pry')
 
@@ -40,6 +41,15 @@ ticket4.save()
 
 ticket5 = Ticket.new({'customer_id' => customer3.id, 'film_id' => film3.id})
 ticket5.save()
+
+screening1 = Screening.new({'film_id' => film1.id, 'timing' => '19:00'})
+screening1.save()
+
+screening2 = Screening.new({'film_id' => film2.id, 'timing' => '16:00'})
+screening2.save()
+
+screening3 = Screening.new({'film_id' => film3.id, 'timing' => '20.30'})
+screening3.save()
 
 binding.pry
 nil
