@@ -32,50 +32,51 @@ film3.save()
 film4 = Film.new({'title' => 'Practical Magic', 'price' => 17})
 film4.save()
 
-ticket1 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film1.id})
-ticket1.save()
-
-ticket2 = Ticket.new({'customer_id' => customer2.id, 'film_id' => film1.id})
-ticket2.save()
-
-ticket3 = Ticket.new({'customer_id' => customer3.id, 'film_id' => film2.id})
-ticket3.save()
-
-ticket4 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film2.id})
-ticket4.save()
-
-ticket5 = Ticket.new({'customer_id' => customer3.id, 'film_id' => film3.id})
-ticket5.save()
-
-ticket6 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film4.id})
-ticket6.save()
-
-ticket7 = Ticket.new({'customer_id' => customer2.id, 'film_id' => film4.id})
-ticket7.save()
-
-screening1 = Screening.new({'film_id' => film1.id, 'timing' => '19:00'})
+screening1 = Screening.new({'film_id' => film1.id, 'timing' => 1900})
 screening1.save()
 
-screening2 = Screening.new({'film_id' => film1.id, 'timing' => '21:00'})
+screening2 = Screening.new({'film_id' => film1.id, 'timing' => 2100})
 screening2.save()
 
-screening3 = Screening.new({'film_id' => film2.id, 'timing' => '16:00'})
+screening3 = Screening.new({'film_id' => film2.id, 'timing' => 1600})
 screening3.save
 
-screening4 = Screening.new({'film_id' => film2.id, 'timing' => '19:00'})
+screening4 = Screening.new({'film_id' => film2.id, 'timing' => 1900})
 screening4.save()
 
-screening5 = Screening.new({'film_id' => film3.id, 'timing' => '20:00'})
+screening5 = Screening.new({'film_id' => film3.id, 'timing' => 2000})
 screening5.save()
 
-screening6 = Screening.new({'film_id' => film3.id, 'timing' => '23:00'})
+screening6 = Screening.new({'film_id' => film3.id, 'timing' => 2300})
 screening6.save()
 
-screening7 = Screening.new({'film_id' => film4.id, 'timing' => '14:00'})
+screening7 = Screening.new({'film_id' => film4.id, 'timing' => 1400})
 screening7.save()
 
-screening8 = Screening.new({'film_id' => film4.id, 'timing' => '18:00'})
+screening8 = Screening.new({'film_id' => film4.id, 'timing' => 1800})
 screening8.save()
+
+ticket1 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film1.id, 'screening_id' => screening2.id})
+ticket1.save()
+
+ticket2 = Ticket.new({'customer_id' => customer2.id, 'film_id' => film1.id, 'screening_id' => screening2.id})
+ticket2.save()
+
+ticket3 = Ticket.new({'customer_id' => customer3.id, 'film_id' => film2.id, 'screening_id' => screening3.id})
+ticket3.save()
+
+ticket4 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film2.id, 'screening_id' => screening4.id})
+ticket4.save()
+
+ticket5 = Ticket.new({'customer_id' => customer3.id, 'film_id' => film3.id, 'screening_id' => screening5.id})
+ticket5.save()
+
+ticket6 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film4.id, 'screening_id' => screening7.id})
+ticket6.save()
+
+ticket7 = Ticket.new({'customer_id' => customer2.id, 'film_id' => film4.id, 'screening_id' => screening8.id})
+ticket7.save()
+
 
 binding.pry
 nil

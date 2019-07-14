@@ -5,7 +5,7 @@ require_relative('screening')
 
 class Film
 
-  attr_accessor :title, :price
+  attr_accessor :title, :price, :screening_id
   attr_reader :id
 
   def initialize(options)
@@ -70,28 +70,5 @@ class Film
     result = customers.map { |customer| Customer.new(customer) }
     return result
   end
-
-  # def customers()
-  #   sql = "SELECT customers.*
-  #   FROM customers
-  #   INNER JOIN tickets
-  #   ON tickets.customer_id = customers.id
-  #   WHERE film_id = $1;"
-  #   values = [@id]
-  #   customers = SqlRunner.run(sql, values)
-  #   result = customers.map { |customer| Customer.new(customer) }
-  #   return result
-  # end
-  # def customers()
-  #   sql = "SELECT customers.*
-  #   FROM customers
-  #   INNER JOIN tickets
-  #   ON tickets.customer_id = customers.id
-  #   WHERE film_id = $1;"
-  #   values = [@id]
-  #   customers = SqlRunner.run(sql, values)
-  #   result = customers.map { |customer| Customer.new(customer) }
-  #   return result
-  # end
 
 end
